@@ -1,4 +1,5 @@
 <?php
+require_once('Objeto.php');
 
 class Inventario {
     private array $objetos;
@@ -7,15 +8,27 @@ class Inventario {
         $this->objetos = $objetos;
     }
 
-    public function getObjetos(): array {
-        return $this->objetos;
-    }
-
-    public function getObjeto(Objeto $objeto): Objeto {
-        foreach($this->objetos as $obj) {
-            if($obj == $objeto) {
-                return $objeto;
-            }    
+    public function usarObjeto(string $nombre): string {
+        foreach($this->objetos as $objeto) {
+            if($objeto->getNombre() === $nombre) {
+                if ($objeto->getCantidadActual() > 0) {
+                    $objeto->setCantidadActual($objeto->getCantidadActual()-1);
+                    return "Has usado: " . $objeto->getNombre() . " te quedan: " . $objeto->getCantidadActual() . " en el inventario"; 
+                } else {
+                    return "No te quedan" . $objeto->getNombre() . " en el inventario";
+                }
+                }
+            }
+            return "No tienes $nombre en el inventario";
         }
-        return null;
+
+    public function fullInventario(): string {
+        $fullObjetos =[];
+        foreach($this->objetos as $objeto) {
+            if($objeto->getCantidadActual() == $objeto->getCantidadMaxima()) {
+                array_push($fullObjetos, $objeto);
+            }
+        }
+        return "Los objetos que están a máxima capacidad son: " . implode(", ", $fullObjetos);
+    }
 }

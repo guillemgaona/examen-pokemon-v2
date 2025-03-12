@@ -9,12 +9,29 @@ class Objeto {
 
     public function __construct(string $nombre, Tipo $tipo, int $cantidadMaxima, int $cantidadActual) {
         $this->nombre = $nombre;
-        $this->Tipo = $tipo;
+        $this->tipo = $tipo;
         $this->cantidadMaxima = $cantidadMaxima;
         $this->cantidadActual = $cantidadActual;
     }
 
-    public function usarObjeto(string $nombre): string {
-        if ($nombre )
+    public function getNombre(): string {
+        return $this->nombre;
     }
+
+    public function getCantidadActual() : int {
+        return $this->cantidadActual;
+    }
+
+    public function setCantidadActual(int $cantidadActual): void {
+        $this->cantidadActual = $cantidadActual;
+    }
+
+    public function getCantidadMaxima(): int {
+        return $this->cantidadMaxima;
+    }
+
+    public function __toString(){
+        return $this->nombre;
+    }
+
 }

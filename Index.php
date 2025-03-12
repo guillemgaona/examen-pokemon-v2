@@ -1,4 +1,5 @@
 <?php
+require_once('Inventario.php');
 
 $objetos = [
     new Objeto("Pocion", Tipo:: pocion, 100, 15),
@@ -7,3 +8,7 @@ $objetos = [
     new Objeto("Clave", Tipo:: clave, 10, 0)
 ];
 
+$inventario1 = new Inventario($objetos);
+
+echo $inventario1->usarObjeto("Pocion") . PHP_EOL;
+echo $inventario1->fullInventario();
